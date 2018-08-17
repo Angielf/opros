@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center">Редактировать опрос</h1>
+    <div class="row">
+        <div class="col-sm-6 offset-sm-3">
+            <form action="" method="post"> {% csrf_token %}
+                {% for field in form %}
+                    <div class="form-group">
+                        {{ field.errors }}
+                        {{ field.label_tag }}
+                        {{ field }}
+                    </div>
+                {% endfor %}
+                <input type="submit" value="Отправить" class="btn btn-primary">
+
+                <a href="{% url 'polls:add_choice' poll.id %}" type="button" class="btn btn-warning">Добавить вариант</a>
+
+                <a href="{% url 'polls:poll_confirm_delete' poll.id %}"
+                   class="btn btn-danger">
+                    <i class="far fa-trash-alt"></i> Удалить
+                </a>
+            </form>
+
+            <h1 class="text-center">Варианты ответа</h1>
+            {% for choice in poll.choice_set.all %}
+                <p>
+                    <a href="{% url 'polls:edit_choice' choice.id %}">
+                        <i class="fas fa-pencil-alt"></i>
+                    </a>
+                    {{choice.choice_text}}
+                </p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

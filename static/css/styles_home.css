@@ -1,0 +1,13 @@
+h1, h3 {
+  color: white;
+}
+
+body{
+  background-image: url('../img/nik-macmillan-280300-unsplash.jpg');
+  background-size: cover;
+}
+
+#home-content {
+  text-align: center;
+  padding-top: 20%;
+}
